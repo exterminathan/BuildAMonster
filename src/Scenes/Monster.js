@@ -11,8 +11,6 @@ class Monster extends Phaser.Scene {
 
     // Use preload to load art and sound assets before the scene starts running.
     preload() {
-        // Assets from Kenny Assets pack "Monster Builder Pack"
-        // https://kenney.nl/assets/monster-builder-pack
         this.load.setPath("./assets/");
 
         // Load sprite atlas
@@ -24,16 +22,28 @@ class Monster extends Phaser.Scene {
 
     create() {
         let my = this.my;   // create an alias to this.my for readability
+        
+        
 
-        // Create the main body sprite
-        //
-        // this.add.sprite(x,y, "{atlas key name}", "{name of sprite within atlas}")
-        //
-        // look in spritesheet_default.xml for the individual sprite names
-        // You can also download the asset pack and look in the PNG/default folder.
+        my.sprite.armLeft = this.add.sprite(this.bodyX - 90, this.bodyY, "monsterParts", "arm_darkA.png").setFlipX(true);
+        my.sprite.armRight = this.add.sprite(this.bodyX + 90, this.bodyY, "monsterParts", "arm_darkA.png");
+
         my.sprite.body = this.add.sprite(this.bodyX, this.bodyY, "monsterParts", "body_greenD.png");
 
+        my.sprite.legLeft = this.add.sprite(this.bodyX - 20, this.bodyY + 60, "monsterParts", "leg_left.png").setFlipX(true); // Flipped for left side
+        my.sprite.legRight = this.add.sprite(this.bodyX + 20, this.bodyY + 60, "monsterParts", "leg_right.png");
         
+        // Add one or more eyes
+        my.sprite.eye = this.add.sprite(this.bodyX, this.bodyY - 30, "monsterParts", "eye.png");
+        
+        // Add a smiling mouth
+        my.sprite.mouthSmile = this.add.sprite(this.bodyX, this.bodyY + 10, "monsterParts", "mouth_smile.png");
+        
+        // Add head accessories, two or more
+        my.sprite.accessory1 = this.add.sprite(this.bodyX, this.bodyY - 50, "monsterParts", "accessory1.png");
+        my.sprite.accessory2 = this.add.sprite(this.bodyX, this.bodyY - 50, "monsterParts", "accessory2.png");
+        
+
     }
 
     update() {
